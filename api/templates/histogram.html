@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Histogram</title>
+<script src="{{ url_for('static', filename='javascript/plotly-2.26.0.min.js') }}"></script>
+
+<script>
+    function make_histogram() {
+
+        const species = {{ x_vals|safe }};
+        const frequencies = {{ y_vals|safe }};
+        const fitOnScreen = '{{ fit_on_screen|safe }}';
+        const WIDTH_PER_BAR = 17;
+        const LABEL_FIT_MARGIN = 325;
+        const SCREEN_HEIGHT_SCALAR = 0.9;
+        let height = Math.max(frequencies.length * WIDTH_PER_BAR, screen.height*SCREEN_HEIGHT_SCALAR);
+        if (fitOnScreen == "on") {
+            height = screen.height*SCREEN_HEIGHT_SCALAR;
+        }
+
+        const data = [{
+            x: frequencies,
+            y: species,
+            type: "bar",
+            name: "InterPro Domain Frequencies Across Species",
+            orientation: "h"
+        }];
+
+        const layout = {
+            title: {
+                text: "Frequency of \'{{ interpro_domain|safe }}\' InterPro Domain Across Species",
+                
+            },
+            autosize: true,
+            width: screen.width,
+            height: height,
+            margin: {
+                l: LABEL_FIT_MARGIN,  //so that labels fit; currently doesn't fit automatically, so if very long label added, may run off page
+            },
+            automargin: true,
+            xaxis: {
+                title: 'Number of Occurrences of InterPro Domain',
+                minallowed: 0
+            },
+            yaxis: {
+                title: {
+                    text: 'Species',
+                    standoff: LABEL_FIT_MARGIN
+                },
+                tickfont: {
+                    size: 12
+                },
+                categoryorder: "category descending"
+            },
+        };  
+
+        const config = {
+            responsive: true
+        };
+        
+        histogram = document.getElementById('histogram');
+        Plotly.newPlot(histogram, data, layout, config);
+
+    }
+</script>
+{% endblock %}
+
+
+{% block body_attributes %}
+    onload='make_histogram();'
+{% endblock %}
+    
+
+{% block body %}
+    <div id="histogram" style="width:1000; height:750px;"></div>
+{% endblock %}

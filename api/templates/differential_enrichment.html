@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Differential Enrichment</title>
+<script src="{{ url_for('static', filename='javascript/plotly-2.26.0.min.js') }}"></script>
+
+<script>
+    function make_differential_enrichment() {        
+        const speciesA = '{{ species_a }}';
+        const speciesB = '{{ species_b }}';
+        const frequencyA = {{ frequency_a|safe }};
+        const frequencyB = {{ frequency_b|safe }};
+        const domains = {{ domains|safe }};
+        const ratios = {{ ratios|safe }};
+        const graphEnrichmentRatio = '{{ graph_enrichment_ratio }}';
+        
+        const WIDTH_PER_BAR = 17;
+        const LABEL_FIT_MARGIN = 325;
+        const SCREEN_HEIGHT_SCALAR = 0.9;
+
+        const data = [{
+            x: domains,
+            y: frequencyA,
+            type: "bar",
+            name: speciesA,
+            offsetgroup: 1
+        },
+        {
+            x: domains,
+            y: frequencyB,
+            type: "bar",
+            name: speciesB,
+            offsetgroup: 2
+        }];
+
+        const layout = {
+            title: {
+                text: 'Most Differentially Enriched InterPro Domains in ' + speciesA + ' Compared to ' + speciesB
+            },
+            autosize: true,
+            width: screen.width,
+            height: screen.height * SCREEN_HEIGHT_SCALAR,
+            automargin: true,
+            xaxis: {
+                title: 'InterPro Domain',
+            },
+            yaxis: {
+                title: {
+                    text: 'Number of Occurrences of InterPro Domain',
+                }
+            },
+        };  
+
+        const config = {
+            responsive: true
+        };
+
+        if (graphEnrichmentRatio == 'on'){
+            data.push({
+                x: domains,
+                y: ratios,
+                type: "bar",
+                name: "Enrichment Ratios",
+                yaxis: "y2",
+                offsetgroup: 3
+            });
+            layout.yaxis2 = {
+                title: "Relative Enrichment of InterPro Domain",
+                overlaying: "y",
+                side: "right"
+            };
+        }
+        
+        histogram = document.getElementById('histogram');
+        Plotly.newPlot(histogram, data, layout, config);
+    }
+</script>
+{% endblock %}
+
+
+{% block body_attributes %}
+    onload='make_differential_enrichment();'
+{% endblock %}
+
+
+{% block body %}
+    <div id="histogram" style="width:1000; height:120px;"></div>
+{% endblock %}
