@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, url_for
-import pymongo
-from timeit import default_timer as timer
+# import pymongo
 
 #INSTRUCTIONS/USAGE DETAILS
 # can only do one domain id, but multiple domains may show up from key word searches
@@ -42,16 +41,12 @@ def generate_histogram():
    
     species_domain_count = {}
 
-    t1 = timer()
     for species in species_selection:
         one_species_col = mydb[species]
 
         count = one_species_col.count_documents({"$or": [{"InterPro ID": interpro_domain}, {"InterPro description": {"$regex": f"({interpro_domain})+", '$options': 'i'}}]})
         species_domain_count[species] = count
-    t2 = timer()
     
-    print(f"took {t2-t1} seconds to get data")    
-
     return render_template('histogram.html', x_vals=list(species_domain_count.keys()), y_vals=list(species_domain_count.values()), fit_on_screen=fit_on_screen, interpro_domain=interpro_domain)
 
 
@@ -68,7 +63,7 @@ def differential_enrichment_graph():
 
     domains_list_a = col_a.distinct('InterPro ID')
     # domains_list_a = domains_list_a[:5]    # remember to remove this
-    t1 = timer()
+
     dom_counts_dict_a = {}
     dom_counts_dict_b = {}
     dom_ratio_pairs = {}
@@ -99,9 +94,6 @@ def differential_enrichment_graph():
     for dom in selected_doms:
         selected_counts_a.append(dom_counts_dict_a[dom])
         selected_counts_b.append(dom_counts_dict_b[dom])
-
-    t2 = timer()
-    print(f"That took {t2-t1} seconds")
 
     return render_template('differential_enrichment.html', species_a=species_a, species_b=species_b, domains=selected_doms, 
         frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio)
