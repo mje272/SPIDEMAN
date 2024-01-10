@@ -13,9 +13,9 @@ from flask import Flask, request, render_template, url_for
 # for ties in level of differential enrichment, it will rank alphabetically ie IPR00157>IPR002542>IPR03665 (I think)
 
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017")
-mydb = myclient["URAP_254_species_db"]
-# mycol = mydb["254_species_data"]
+# myclient = pymongo.MongoClient("mongodb://localhost:27017")
+# mydb = myclient["URAP_254_species_db"]
+# # mycol = mydb["254_species_data"]
 
 
 app = Flask(__name__)
