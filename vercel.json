@@ -1,14 +1,14 @@
 {
     "builds": [
         {
-            "src": "api/URAP_histogram_app.py",
+            "src": "api/index.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "api/URAP_histogram_app.py"
+            "dest": "api/index.py"
         }
     ]
 }
