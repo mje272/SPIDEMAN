@@ -307,10 +307,11 @@
         <label for="search_term">Search Term: </label>
         <input type="text" id="search_term" name="search_term">  <!-- make text area?-->
         <br><br>
+        <p>Search Type:</p>
         <label for="keyword">Keyword</label>
-        <input type="radio" id="keyword" name="search_type">
-        <label for="InterPro ID">InterPro ID</label>
-        <input type="radio" id="InterPro ID" name="search_type">
+        <input type="radio" id="keyword" name="search_type" value="keyword"><br>
+        <label for="interpro_id">InterPro ID</label>
+        <input type="radio" id="interpro_id" name="search_type" value="interpro_id">
         <br><br>
         <label for="fit_on_screen">Fit on screen (may lose labels) </label>
         <input type="checkbox" id="fit_on_screen" name="fit_on_screen" value="on" onchange="updateFitOnScreen();">
