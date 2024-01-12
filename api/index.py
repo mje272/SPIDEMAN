@@ -27,17 +27,17 @@ def generate_histogram():
     search_type = request.form['search_type']
     fit_on_screen = request.form['fit_on_screen']
 
-    url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
-    data = {
-        "species_selection": species_selection,
-        "search_term": search_term,
-        "search_type": search_type,
-        }
-    r = requests.post(url=url, data=data)
-    frequency_dict_list = r.json['frequency_dict_list']
-    counts_list = [sum(x) for x in frequency_dict_list.values()]
+    # url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
+    # data = {
+    #     "species_selection": species_selection,
+    #     "search_term": search_term,
+    #     "search_type": search_type,
+    #     }
+    # r = requests.post(url=url, data=data)
+    # frequency_dict_list = r.json['frequency_dict_list']
+    # counts_list = [sum(x) for x in frequency_dict_list.values()]
+    counts_list = [3, 4, 5]
 
-    # return render_template('histogram.html', x_vals=list(species_domain_count.keys()), y_vals=list(species_domain_count.values()), fit_on_screen=fit_on_screen, interpro_domain=interpro_domain)
     return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
 
 
