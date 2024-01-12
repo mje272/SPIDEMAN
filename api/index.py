@@ -36,9 +36,8 @@ def generate_histogram():
         })
     headers = {"Content-Type": "application/json"}
     r = requests.post(url=url, data=data, headers=headers)
-    # frequency_dict_list = r.json()['frequency_dict_list']
-    # counts_list = [sum(x) for x in frequency_dict_list.values()]
-    counts_list = [1, 3, 10]
+    frequency_dict_list = r.json()['frequency_dict_list']
+    counts_list = [sum(x.values()) for x in frequency_dict_list]
 
     return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
 
