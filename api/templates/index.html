@@ -304,8 +304,13 @@
         </select>  ^^Use if selection list has not been updated (see Flask app file)-->
         <br><br>
 
-        <label for="interpro_domain">InterPro Domain: </label>
-        <input type="text" id="interpro_domain" name="interpro_domain">  <!-- make text area?-->
+        <label for="search_term">Search Term: </label>
+        <input type="text" id="search_term" name="search_term">  <!-- make text area?-->
+        <br><br>
+        <label for="keyword">Keyword</label>
+        <input type="radio" id="keyword" name="search_type">
+        <label for="InterPro ID">InterPro ID</label>
+        <input type="radio" id="InterPro ID" name="search_type">
         <br><br>
         <label for="fit_on_screen">Fit on screen (may lose labels) </label>
         <input type="checkbox" id="fit_on_screen" name="fit_on_screen" value="on" onchange="updateFitOnScreen();">
