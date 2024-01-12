@@ -35,20 +35,10 @@ def index():
 
 @app.route('/generate_histogram', methods = ['POST'])
 def generate_histogram():  
-    species_selection = request.form.getlist('species_selection')  # AKA genome project
-    interpro_domain = request.form['interpro_domain']
-    fit_on_screen = request.form['fit_on_screen']
-   
-    species_domain_count = {}
-
-    for species in species_selection:
-        one_species_col = mydb[species]
-
-        count = one_species_col.count_documents({"$or": [{"InterPro ID": interpro_domain}, {"InterPro description": {"$regex": f"({interpro_domain})+", '$options': 'i'}}]})
-        species_domain_count[species] = count
     
-    return render_template('histogram.html', x_vals=list(species_domain_count.keys()), y_vals=list(species_domain_count.values()), fit_on_screen=fit_on_screen, interpro_domain=interpro_domain)
-
+    
+    # return render_template('histogram.html', x_vals=list(species_domain_count.keys()), y_vals=list(species_domain_count.values()), fit_on_screen=fit_on_screen, interpro_domain=interpro_domain)
+    return render_template('histogram.html')
 
 @app.route('/differential_enrichment', methods = ['POST'])
 def differential_enrichment_graph():

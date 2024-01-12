@@ -39,7 +39,7 @@
 
 {% block body %}
     <h1>Species InterPro Domain Frequency Comparison</h1>
-    <form action="http://127.0.0.1:5000/generate_histogram" target="_blank" method="post" id="query_input_form">  <!--update action directory-->
+    <form action="/generate_histogram" target="_blank" method="post" id="query_input_form">  <!--update action directory-->
         <label for="species_selection">Species Selection: </label>  
         <select id="species_selection" name="species_selection" form="query_input_form" multiple size="10">
             <option value=acanthocheilonema_viteae_prjeb1697>acanthocheilonema_viteae_prjeb1697</option>
