@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import requests
+import json
 #INSTRUCTIONS/USAGE DETAILS
 # can only do one domain id, but multiple domains may show up from key word searches
 #   description must contain exact string entered (case insensitive though)
@@ -27,16 +28,16 @@ def generate_histogram():
     search_type = request.form['search_type']
     fit_on_screen = request.form['fit_on_screen']
 
-    # url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
-    # data = {
-    #     "species_selection": species_selection,
-    #     "search_term": search_term,
-    #     "search_type": search_type,
-    #     }
-    # r = requests.post(url=url, data=data)
-    # frequency_dict_list = r.json['frequency_dict_list']
-    # counts_list = [sum(x) for x in frequency_dict_list.values()]
-    counts_list = [3, 4, 5]
+    url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
+    data = json.dumps({
+        "species_selection": species_selection,
+        "search_term": search_term,
+        "search_type": search_type
+        })
+    headers = {"Content-Type": "application/json"}
+    r = requests.post(url=url, data=data, headers=headers)
+    frequency_dict_list = r.json()['frequency_dict_list']
+    counts_list = [sum(x) for x in frequency_dict_list.values()]
 
     return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
 
