@@ -1,6 +1,5 @@
-from flask import Flask, request, render_template, url_for
-# import pymongo
-
+from flask import Flask, request, render_template
+import requests
 #INSTRUCTIONS/USAGE DETAILS
 # can only do one domain id, but multiple domains may show up from key word searches
 #   description must contain exact string entered (case insensitive though)
@@ -13,32 +12,35 @@ from flask import Flask, request, render_template, url_for
 # for ties in level of differential enrichment, it will rank alphabetically ie IPR00157>IPR002542>IPR03665 (I think)
 
 
-# myclient = pymongo.MongoClient("mongodb://localhost:27017")
-# mydb = myclient["URAP_254_species_db"]
-# # mycol = mydb["254_species_data"]
-
-
 app = Flask(__name__)
 
 @app.route('/')
 def index():
 
     return render_template('index.html')
-    # collection = mycol.find({}, {"Genome project": 1})
-    # for i in collection:
-    #     species = i["Genome project"]
-    #     if not species in species_options_list:
-    #         species_options_list.append(species)
-    # return render_template('index.html', species_options_list=species_options_list)
-    ######### ^Use if selection list has not been updated in index.html (see index.html) ###########
-    ######### works slowly, but will generate selection list automatically
+    
 
 @app.route('/generate_histogram', methods = ['POST'])
 def generate_histogram():  
-    
-    
+    species_selection = request.form.getlist('species_selection')  # AKA genome project
+    search_term = request.form['search_term']
+    search_type = request.form['search_type']
+    fit_on_screen = request.form['fit_on_screen']
+
+    url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
+    data = {
+        "species_selection": species_selection,
+        "search_term": search_term,
+        "search_type": search_type,
+        }
+    r = requests.post(url=url, data=data)
+    frequency_dict_list = r.json['frequency_dict_list']
+    counts_list = [sum(x) for x in frequency_dict_list.values()]
+
     # return render_template('histogram.html', x_vals=list(species_domain_count.keys()), y_vals=list(species_domain_count.values()), fit_on_screen=fit_on_screen, interpro_domain=interpro_domain)
-    return render_template('histogram.html')
+    return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
+
+
 
 @app.route('/differential_enrichment', methods = ['POST'])
 def differential_enrichment_graph():

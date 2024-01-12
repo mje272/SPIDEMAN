@@ -7,8 +7,8 @@
 <script>
     function make_histogram() {
 
-        const species = {{ x_vals|safe }};
-        const frequencies = {{ y_vals|safe }};
+        const species = {{ species_list|safe }};
+        const frequencies = {{ counts_list|safe }};
         const fitOnScreen = '{{ fit_on_screen|safe }}';
         const WIDTH_PER_BAR = 17;
         const LABEL_FIT_MARGIN = 325;
@@ -28,7 +28,7 @@
 
         const layout = {
             title: {
-                text: "Frequency of \'{{ interpro_domain|safe }}\' InterPro Domain Across Species",
+                text: "Frequency of \'{{ search_term|safe }}\' InterPro Domain Across Species",
                 
             },
             autosize: true,
