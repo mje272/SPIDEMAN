@@ -35,14 +35,14 @@
         }
 
         var isLargeRequest = false;
-        const histogram_action = document.getElementById("query_input_form").getAttribute("action");
+        const histogram_form = document.getElementById("query_input_form");
         function updateIsLargeRequest() { //make this only an option with search_type=keyword
             if (isLargeRequest) {
                 isLargeRequest = false;
-                histogram_action = "/generate_histogram"
+                histogram_form.setAttribute("action", "/generate_histogram");
             } else {
-                isLarge = true
-                histogram_action = "/histogram_large_request"
+                isLarge = true;
+                histogram_form.setAttribute("action", "/histogram_large_request");
             }
         }
     </script>
