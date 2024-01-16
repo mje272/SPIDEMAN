@@ -37,20 +37,20 @@
         var isLargeRequest = false;
         const histogram_form = document.getElementById("query_input_form");
         function updateIsLargeRequest() { //make this only an option with search_type=keyword
-            document.getElementById("query_input_form").setAttribute("action", "/histogram_large_request")
-            // if (isLargeRequest) {
-            //     isLargeRequest = false;
-            //     histogram_form.setAttribute("action", "/generate_histogram");
-            // } else {
-            //     isLarge = true;
-            //     histogram_form.setAttribute("action", "/histogram_large_request");
-            // }
+            if (isLargeRequest) {
+                isLargeRequest = false;
+                histogram_form.setAttribute("action", "/histogram_large_request");
+            } else {
+                isLarge = true;
+                histogram_form.setAttribute("action", "/histogram_large_request");
+            }
         }
     </script>
 {% endblock %}
 
 
 {% block body %}
+test
     <h1>Species InterPro Domain Frequency Comparison</h1>
     <form action="/generate_histogram" target="_blank" method="post" id="query_input_form">  <!--update action directory-->
         <label for="species_selection">Species Selection: </label>  
