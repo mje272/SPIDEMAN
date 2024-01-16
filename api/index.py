@@ -41,6 +41,12 @@ def generate_histogram():
 
     return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
 
+@app.route('/histogram_large_request')
+def histogram_large_request():
+    species_selection = request.form.getlist('species_selection')  # AKA genome project
+    search_term = request.form['search_term']
+    fit_on_screen = request.form['fit_on_screen']
+    return render_template('histogram_loading_page.html', species_list=species_selection, fit_on_screen=fit_on_screen, search_term=search_term)
 
 
 @app.route('/differential_enrichment', methods = ['POST'])

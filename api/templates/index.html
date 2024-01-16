@@ -5,17 +5,17 @@
     <script>
         var fitOnScreen = false;
         const default_fit_on_screen = document.getElementById("default_fit_on_screen");
-        function updateFitOnScreen(){
+        function updateFitOnScreen() {
             if (fitOnScreen) {
                 document.createChild(default_fit_on_screen)
             } else {
                 document.removeChild(default_fit_on_screen)
-                fitOnScreen = true;
+                fitOnScreen = true; //how does this get reset to false????
             }
         }
         var graphEnrichmentRatio = false;
         const default_graph_enrichment_ratio = document.getElementById("default_graph_enrichment_ratio");
-        function updateGraphEnrichmentRatio(){
+        function updateGraphEnrichmentRatio() {
             if (graphEnrichmentRatio) {
                 document.createChild(default_graph_enrichment_ratio)
             } else {
@@ -25,12 +25,24 @@
         }
         var includeTies = false;
         const default_include_ties = document.getElementById("default_include_ties");
-        function updateIncludeTies(){
+        function updateIncludeTies() { 
             if (includeTies) {
                 document.createChild(default_include_ties)
             } else {
                 document.removeChild(default_include_ties)
                 includeTies = true;
+            }
+        }
+
+        var isLargeRequest = false;
+        const histogram_action = document.getElementById("query_input_form").getAttribute("action");
+        function updateLargeRequest() { //make this only an option with search_type=keyword
+            if (isLargeRequest) {
+                isLargeRequest = false;
+                histogram_action = "/generate_histogram"
+            } else {
+                isLarge = true
+                histogram_action = "/histogram_large_request"
             }
         }
     </script>
@@ -317,7 +329,7 @@
         <input type="checkbox" id="fit_on_screen" name="fit_on_screen" value="on" onchange="updateFitOnScreen();">
         <input type="hidden" id="default_fit_on_screen" name="fit_on_screen" value="off"><br><br>
         <button type="submit">Submit</button>
-        <p>note: This may take up to 30s to run (depending on how many species are selected)</p>
+        <p>note: This might take a while (depending on how many species are selected and how many results the search term gets)</p>
     </form>
     <br><br>
     <h1>Most differentially enriched InterPro domains between two species</h1>
