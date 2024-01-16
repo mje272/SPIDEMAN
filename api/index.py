@@ -46,7 +46,14 @@ def histogram_large_request():
     species_selection = request.form.getlist('species_selection')  # AKA genome project
     search_term = request.form['search_term']
     fit_on_screen = request.form['fit_on_screen']
-    return render_template('histogram_loading_page.html', species_list=species_selection, fit_on_screen=fit_on_screen, search_term=search_term)
+    url = 'https://heqmgl4nsbb42yleftbayog6im0qwrep.lambda-url.us-west-1.on.aws/'
+    data = json.dumps({
+        "search_term": search_term,
+        })
+    headers = {"Content-Type": "application/json"}
+    r = requests.post(url=url, data=data, headers=headers)
+    domains_of_interest = r.json()
+    return render_template('histogram_loading_page.html', species_list=species_selection, fit_on_screen=fit_on_screen, search_term=search_term, domains_of_interest=domains_of_interest)
 
 
 @app.route('/differential_enrichment', methods = ['POST'])
