@@ -3,13 +3,39 @@
 
 {% block head %}
     <title>Loading Histogram</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const speciesList = {{ species_list|safe }};
+        const fitOnScreen = {{ fit_on_screen|safe }};
+        const searchTerm = {{ search_term|safe }};
+        var domainsOfInterest = {{ domains_of_interest|safe }};
+        $(document).ready(function(){
+            $.ajax({
+                contentType: "application/json",
+                data: {
+                    species_selection: speciesList,
+                    search_term: domainsOfInterest.pop(),
+                    search_type: "InterPro ID"
+                },
+                type: "POST",
+                url: "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/",
+                success: function(result){
+                    $("#results").text(result)
+                }
+            })
+        });
+    </script>
+    
+{% endblock %}
+
+{% block body %}
     Loading...
-    {{ species_list|safe }}
-    {{ fit_on_screen|safe }}
-    {{ search_term|safe }}
-    {{ domains_of_interest|safe }}
+    <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
+    <p id="results"></p>
+
 {% endblock %}
 
 
-{% block body %}
+
+{% block body_attributes %}
 {% endblock %}
