@@ -36,7 +36,7 @@
 
         var isLargeRequest = false;
         const histogram_action = document.getElementById("query_input_form").getAttribute("action");
-        function updateLargeRequest() { //make this only an option with search_type=keyword
+        function updateIsLargeRequest() { //make this only an option with search_type=keyword
             if (isLargeRequest) {
                 isLargeRequest = false;
                 histogram_action = "/generate_histogram"
@@ -328,6 +328,9 @@
         <label for="fit_on_screen">Fit on screen (may lose labels) </label>
         <input type="checkbox" id="fit_on_screen" name="fit_on_screen" value="on" onchange="updateFitOnScreen();">
         <input type="hidden" id="default_fit_on_screen" name="fit_on_screen" value="off"><br><br>
+        <label for="is_large_request">Large request: (For sets of inputs that timeout otherwise, only use with keyword search terms)</label>
+        <input type="checkbox" id="is_large_request" name="is_large_request" onchange="updateIsLargeRequest();"><br><br>
+
         <button type="submit">Submit</button>
         <p>note: This might take a while (depending on how many species are selected and how many results the search term gets)</p>
     </form>
