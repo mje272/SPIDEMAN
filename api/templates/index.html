@@ -37,13 +37,14 @@
         var isLargeRequest = false;
         const histogram_form = document.getElementById("query_input_form");
         function updateIsLargeRequest() { //make this only an option with search_type=keyword
-            if (isLargeRequest) {
-                isLargeRequest = false;
-                histogram_form.setAttribute("action", "/generate_histogram");
-            } else {
-                isLarge = true;
-                histogram_form.setAttribute("action", "/histogram_large_request");
-            }
+            document.getElementById("query_input_form").setAttribute("action", "/histogram_large_request")
+            // if (isLargeRequest) {
+            //     isLargeRequest = false;
+            //     histogram_form.setAttribute("action", "/generate_histogram");
+            // } else {
+            //     isLarge = true;
+            //     histogram_form.setAttribute("action", "/histogram_large_request");
+            // }
         }
     </script>
 {% endblock %}
