@@ -38,7 +38,7 @@
         function updateIsLargeRequest() { //make this only an option with search_type=keyword
             if (isLargeRequest) {
                 isLargeRequest = false;
-                document.getElementById("query_input_form").setAttribute("action", "/histogram_large_request");
+                document.getElementById("query_input_form").setAttribute("action", "/generate_histogram");
             } else {
                 isLarge = true;
                 document.getElementById("query_input_form").setAttribute("action", "/histogram_large_request");
@@ -328,7 +328,7 @@ test2
         <label for="fit_on_screen">Fit on screen (may lose labels) </label>
         <input type="checkbox" id="fit_on_screen" name="fit_on_screen" value="on" onchange="updateFitOnScreen();">
         <input type="hidden" id="default_fit_on_screen" name="fit_on_screen" value="off"><br><br>
-        <label for="is_large_request">Large request: (For sets of inputs that timeout otherwise, only use with keyword search terms)</label>
+        <label for="is_large_request">Large request: (For sets of inputs that timeout otherwise) (only use with keyword search terms)</label>
         <input type="checkbox" id="is_large_request" name="is_large_request" onchange="updateIsLargeRequest();"><br><br>
 
         <button type="submit">Submit</button>
