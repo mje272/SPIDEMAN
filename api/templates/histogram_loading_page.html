@@ -10,18 +10,19 @@
         const searchTerm = {{ search_term|safe }};
         var domainsOfInterest = {{ domains_of_interest|safe }};
         $(document).ready(function(){
-            $.ajax({
-                contentType: "application/json",
-                data: {
-                    species_selection: speciesList,
-                    search_term: domainsOfInterest.pop(),
-                },
-                type: "POST",
-                url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
-                success: function(result){
-                    $("#results").text(JSON.stringify(result));
-                }
-            })
+            // $.ajax({
+            //     contentType: "application/json",
+            //     data: {
+            //         species_selection: speciesList,
+            //         search_term: domainsOfInterest.pop(),
+            //     },
+            //     type: "POST",
+            //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
+            //     success: function(result){
+            //         $("#results").text(JSON.stringify(result));
+            //     }
+            // })
+            $("#results").text("testsaasgaf");
         });
     </script>
     
