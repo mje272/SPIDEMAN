@@ -15,12 +15,11 @@
                 data: {
                     species_selection: speciesList,
                     search_term: domainsOfInterest.pop(),
-                    search_type: "InterPro ID"
                 },
                 type: "POST",
                 url: "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/",
                 success: function(result){
-                    $("#results").text(result)
+                    $("#results").text(JSON.stringify(result));
                 }
             })
         });
