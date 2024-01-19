@@ -3,32 +3,31 @@
 
 {% block head %}
     <title>Loading Histogram</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="jquery-3.7.1.min.js"></script>
+    <script src="{{ url_for('static', filename='javascript/jquery3.7.1.min.js') }}"></script>
     <script>
         $("#btn1").click(function(){
             $("#test1").text("Hello world!");
         });
-        const speciesList = {{ species_list|safe }};
-        const fitOnScreen = {{ fit_on_screen|safe }};
-        const searchTerm = {{ search_term|safe }};
-        var domainsOfInterest = {{ domains_of_interest|safe }};
+        // const speciesList = {{ species_list|safe }};
+        // const fitOnScreen = {{ fit_on_screen|safe }};
+        // const searchTerm = {{ search_term|safe }};
+        // var domainsOfInterest = {{ domains_of_interest|safe }};
         
-        $(document).ready(function(){
-            // $.ajax({
-            //     contentType: "application/json",
-            //     data: {
-            //         species_selection: speciesList,
-            //         search_term: domainsOfInterest.pop(),
-            //     },
-            //     type: "POST",
-            //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
-            //     success: function(result){
-            //         $("#results").text(JSON.stringify(result));
-            //     }
-            // })
-            $("#results").text("testsaasgaf");
-        });
+        // $(document).ready(function(){
+        //     // $.ajax({
+        //     //     contentType: "application/json",
+        //     //     data: {
+        //     //         species_selection: speciesList,
+        //     //         search_term: domainsOfInterest.pop(),
+        //     //     },
+        //     //     type: "POST",
+        //     //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
+        //     //     success: function(result){
+        //     //         $("#results").text(JSON.stringify(result));
+        //     //     }
+        //     // })
+        //     $("#results").text("testsaasgaf");
+        // });
         
     </script>
     
