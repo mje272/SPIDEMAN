@@ -3,7 +3,7 @@
 
 {% block head %}
     <title>Loading Histogram</title>
-    <script src="{{ url_for('static', filename='javascript/jquery3.7.1.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='javascript/jquery3.7.1.min.js') }}"></script>
     <script>
         $("#btn1").click(function(){
             $("#test1").text("Hello world!");
@@ -29,16 +29,29 @@
         //     $("#results").text("testsaasgaf");
         // });
         
+    </script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    $("button").click(function(){
+        $("p").hide();
+    });
+    });
     </script>
     
 {% endblock %}
 
 {% block body %}
     Loading...
-    <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
+    <!-- <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
     <button id="btn1"></button>
-    <p id="test1"></p>
+    <p id="test1"></p> -->
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+
+    <button>Click me to hide paragraphs</button>
 {% endblock %}
 
 
