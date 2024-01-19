@@ -6,10 +6,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="jquery-3.7.1.min.js"></script>
     <script>
+        $("#btn1").click(function(){
+            $("#test1").text("Hello world!");
+        });
         const speciesList = {{ species_list|safe }};
         const fitOnScreen = {{ fit_on_screen|safe }};
         const searchTerm = {{ search_term|safe }};
         var domainsOfInterest = {{ domains_of_interest|safe }};
+        
         $(document).ready(function(){
             // $.ajax({
             //     contentType: "application/json",
@@ -25,6 +29,7 @@
             // })
             $("#results").text("testsaasgaf");
         });
+        
     </script>
     
 {% endblock %}
@@ -33,7 +38,8 @@
     Loading...
     <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
-
+    <button id="btn1"></button>
+    <p id="test1"></p>
 {% endblock %}
 
 
