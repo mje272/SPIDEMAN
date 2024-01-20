@@ -11,6 +11,7 @@
         var domainsOfInterest = {{ domains_of_interest|safe }};
         
         $(document).ready(function(){
+            $("#results").text("test");
             $.ajax({
                 contentType: "application/json",
                 data: {
@@ -23,7 +24,7 @@
                     $("#results").text(JSON.stringify(result));
                 }
             });
-            $("#results").text("testsaasgaf");
+            
         });
         
     </script>
