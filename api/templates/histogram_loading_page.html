@@ -15,21 +15,21 @@
         // const searchTerm = {{ search_term|safe }};
         // var domainsOfInterest = {{ domains_of_interest|safe }};
         
-        // $(document).ready(function(){
-        //     // $.ajax({
-        //     //     contentType: "application/json",
-        //     //     data: {
-        //     //         species_selection: speciesList,
-        //     //         search_term: domainsOfInterest.pop(),
-        //     //     },
-        //     //     type: "POST",
-        //     //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
-        //     //     success: function(result){
-        //     //         $("#results").text(JSON.stringify(result));
-        //     //     }
-        //     // })
-        //     $("#results").text("testsaasgaf");
-        // });
+        $(document).ready(function(){
+            // $.ajax({
+            //     contentType: "application/json",
+            //     data: {
+            //         species_selection: speciesList,
+            //         search_term: domainsOfInterest.pop(),
+            //     },
+            //     type: "POST",
+            //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
+            //     success: function(result){
+            //         $("#results").text(JSON.stringify(result));
+            //     }
+            // });
+            $("#results").text("testsaasgaf");
+        });
         
     </script>
 
@@ -46,10 +46,10 @@
 
 {% block body %}
     Loading...
-    <!-- <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
+    <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
     <button id="btn1"></button>
-    <p id="test1"></p> -->
+    <p id="test1"></p>
     <p>This is a paragraph.</p>
     <p>This is another paragraph.</p>
 
