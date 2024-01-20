@@ -5,10 +5,10 @@
     <title>Loading Histogram</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        // const speciesList = {{ species_list|safe }};
-        // const fitOnScreen = {{ fit_on_screen|safe }};
-        // const searchTerm = {{ search_term|safe }};
-        // var domainsOfInterest = {{ domains_of_interest|safe }};
+        const speciesList = {{ species_list|safe }};
+        const fitOnScreen = '{{ fit_on_screen|safe }}';
+        const searchTerm = '{{ search_term|safe }}';
+        var domainsOfInterest = {{ domains_of_interest|safe }};
         
         $(document).ready(function(){
             $("#results").text("test");
