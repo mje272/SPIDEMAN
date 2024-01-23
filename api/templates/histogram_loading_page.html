@@ -7,24 +7,33 @@
     <script src="jquery-3.7.1.min.js"></script>
     <script>
         const speciesList = {{ species_list|safe }};
-        const fitOnScreen = {{ fit_on_screen|safe }};
-        const searchTerm = {{ search_term|safe }};
+        const fitOnScreen = '{{ fit_on_screen|safe }}';
+        const searchTerm = '{{ search_term|safe }}';
         var domainsOfInterest = {{ domains_of_interest|safe }};
+        
         $(document).ready(function(){
-            // $.ajax({
-            //     contentType: "application/json",
-            //     data: {
-            //         species_selection: speciesList,
-            //         search_term: domainsOfInterest.pop(),
-            //     },
-            //     type: "POST",
-            //     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
-            //     success: function(result){
-            //         $("#results").text(JSON.stringify(result));
-            //     }
-            // })
-            $("#results").text("testsaasgaf");
+            $("#results").text("test");
+            $.ajax({
+                url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
+                processData: false,
+                crossDomain: true,
+                type: "POST",
+                data: JSON.stringify({
+                    species_selection: speciesList,
+                    domain: domainsOfInterest.pop(),
+                }),
+                cache: false,
+                processData: false,
+                success: function(result){
+                    $("#results").text(JSON.stringify(result));
+                },
+                error: function(result, statusText, xhr) {
+                    $("#results").text(JSON.stringify(result));
+                },
+            });
+            
         });
+        
     </script>
     
 {% endblock %}
@@ -33,7 +42,6 @@
     Loading...
     <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
-
 {% endblock %}
 
 
