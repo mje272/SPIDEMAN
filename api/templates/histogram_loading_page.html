@@ -10,10 +10,7 @@
         const fitOnScreen = '{{ fit_on_screen|safe }}';
         const searchTerm = '{{ search_term|safe }}';
         var domainsOfInterest = {{ domains_of_interest|safe }};
-        var frequencyDictList = [];
-        for(let i=0; i < speciesList.length; i++) {
-            frequencyDictList.push({});
-        }
+        var frequencyDictList;
         
         $(document).ready(function(){
             $("#results").text("test");
@@ -30,10 +27,13 @@
                 processData: false,
                 success: function(result){
                     $("#remaining_domains").text(JSON.stringify(domainsOfInterest));
-                    for(let i=0; i < result.length; i++) {
-                        for(let dom in result[i]) {
-                            frequencyDictList[i][dom] = result[i][dom];
-                    }
+                    if (frequencyDictList) {
+                        for(let i=0; i < result.length; i++) {
+                            for(let dom in result[i]) {
+                                frequencyDictList[i][dom] = result[i][dom];
+                        }
+                    } else {
+                        frequncyDictList = result; //['body']?
                     $("#results").text(JSON.stringify(frequencyDictList));
                 },
                 error: function(result, statusText, xhr) {
