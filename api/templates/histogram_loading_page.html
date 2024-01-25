@@ -5,6 +5,7 @@
     <title>Loading Histogram</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="jquery-3.7.1.min.js"></script>
+    
     <script>
         const speciesList = {{ species_list|safe }};
         const fitOnScreen = '{{ fit_on_screen|safe }}';
@@ -42,7 +43,16 @@
                             $("#remainingCount").text(JSON.stringify(result) + "/" + JSON.stringify(domainTotal));
                             incrementalLoad();
                         } else {
-                            $("#final_sums").text(JSON.stringify())
+                            var sums = "";
+                            for(let species in result) {
+                                let species_sum = 0;
+                                for(let dom in species) {
+                                    
+                                    species_sum += species[dom];
+                                }
+                                sums += JSON.stringify(species_sum) + " ";
+                            }
+                            $("#final_sums").text(sums);
                         }
                     },
                     error: function(result, statusText, xhr) {
