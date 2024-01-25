@@ -12,39 +12,43 @@
         var domainsOfInterest = {{ domains_of_interest|safe }};
         var frequencyDictList;
         
-        $(document).ready(function(){
-            $("#results").text("test");
-            $.ajax({
-                url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
-                processData: false,
-                crossDomain: true,
-                type: "POST",
-                data: JSON.stringify({
-                    species_selection: speciesList,
-                    domain: domainsOfInterest.pop(),
-                }),
-                cache: false,
-                processData: false,
-                success: function(result){
-                    $("#remaining_domains").text(JSON.stringify(domainsOfInterest));
-                    if (frequencyDictList) {
-                        for(let i=0; i < result.length; i++) {
-                            for(let dom in result[i]) {
-                                frequencyDictList[i][dom] = result[i][dom];
+        function loadOneDomain() {
+            $(document).ready(function(){
+                $("#results").text("test");
+                $.ajax({
+                    url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
+                    processData: false,
+                    crossDomain: true,
+                    type: "POST",
+                    data: JSON.stringify({
+                        species_selection: speciesList,
+                        domain: domainsOfInterest.pop(),
+                    }),
+                    cache: false,
+                    processData: false,
+                    success: function(result){
+                        $("#remaining_domains").text(JSON.stringify(domainsOfInterest));
+                        if (frequencyDictList) {
+                            for(let i=0; i < result.length; i++) {
+                                for(let dom in result[i]) {
+                                    frequencyDictList[i][dom] = result[i][dom];
+                                }
                             }
+                        } else {
+                            frequencyDictList = result; //['body']?
+                        } 
+                        $("#results").text(JSON.stringify(frequencyDictList));
+                        if (domainsOfInterest.length) {
+                            $("#results").text(JSON.stringify(domainsOfInterest.length));
                         }
-                    } else {
-                        frequencyDictList = result; //['body']?
-                    } 
-                    $("#results").text(JSON.stringify(frequencyDictList));
-                },
-                error: function(result, statusText, xhr) {
-                    $("#results").text(JSON.stringify(result));
-                },
+                    },
+                    error: function(result, statusText, xhr) {
+                        $("#results").text(JSON.stringify(result));
+                    },
+                });
             });
-            
-        });
-        
+        }
+
     </script>
     
 {% endblock %}
