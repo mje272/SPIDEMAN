@@ -15,7 +15,7 @@
         function incrementalLoad() {
             $(document).ready(function(){
                 $("#results").text("test");
-                $("#results").text(JSON.stringify(result));//remove
+                $("#results").text(JSON.stringify(domainsOfInterest.length));//remove
                 $.ajax({
                     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
                     processData: false,
