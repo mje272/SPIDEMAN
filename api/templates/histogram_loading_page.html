@@ -12,7 +12,7 @@
         var domainsOfInterest = {{ domains_of_interest|safe }};
         var frequencyDictList;
         
-        function loadOneDomain() {
+        function incrementalLoad() {
             $(document).ready(function(){
                 $("#results").text("test");
                 $.ajax({
@@ -48,6 +48,8 @@
                 });
             });
         }
+
+        incrementalLoad();
 
     </script>
     
