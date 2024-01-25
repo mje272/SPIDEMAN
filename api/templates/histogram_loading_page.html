@@ -52,6 +52,7 @@
                                 }
                                 sums += JSON.stringify(species_sum) + " ";
                             }
+                            
                             $("#final_sums").text(sums);
                         }
                     },
@@ -74,6 +75,7 @@
     <p id="results"></p>
     <p id="remaining_count"></p>
     <p id="final_sums"></p>
+    <p>{{ domains_of_interest|safe }}</p>
 {% endblock %}
 
 
