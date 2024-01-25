@@ -15,6 +15,7 @@
         function incrementalLoad() {
             $(document).ready(function(){
                 $("#results").text("test");
+                $("#results").text(JSON.stringify(result));//remove
                 $.ajax({
                     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
                     processData: false,
@@ -43,7 +44,7 @@
                         }
                     },
                     error: function(result, statusText, xhr) {
-                        $("#results").text(JSON.stringify(result));
+                        $("#results").text(JSON.stringify(result));//remove
                     },
                 });
             });
