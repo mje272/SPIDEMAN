@@ -10,12 +10,12 @@
         const fitOnScreen = '{{ fit_on_screen|safe }}';
         const searchTerm = '{{ search_term|safe }}';
         var domainsOfInterest = {{ domains_of_interest|safe }};
+        const domainTotal = domainsOfInterest.length;
         var frequencyDictList;
         
         function incrementalLoad() {
             $(document).ready(function(){
                 $("#results").text("test");
-                $("#results").text(JSON.stringify(domainsOfInterest.length));//remove
                 $.ajax({
                     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
                     processData: false,
@@ -40,11 +40,11 @@
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
-                            $("#results").text(JSON.stringify(domainsOfInterest.length));
+                            incrementalLoad();
                         }
                     },
                     error: function(result, statusText, xhr) {
-                        $("#results").text(JSON.stringify(result));//remove
+                        $("#remainingCount").text(JSON.stringify(result) + "/" + JSON.stringify(domainTotal));
                     },
                 });
             });
@@ -60,6 +60,7 @@
     Loading...
     <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
+    <p id="remaining_count"></p>
 {% endblock %}
 
 
