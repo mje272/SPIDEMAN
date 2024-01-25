@@ -15,7 +15,6 @@
         
         function incrementalLoad() {
             $(document).ready(function(){
-                $("#results").text("test");
                 $.ajax({
                     url: "https://zr25ojb4do7qu6usoihbljlhbe0vcsif.lambda-url.us-west-1.on.aws/",
                     processData: false,
@@ -36,15 +35,18 @@
                                 }
                             }
                         } else {
-                            frequencyDictList = result; //['body']?
+                            frequencyDictList = result;
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
+                            $("#remainingCount").text(JSON.stringify(result) + "/" + JSON.stringify(domainTotal));
                             incrementalLoad();
+                        } else {
+                            $("#final_sums").text(JSON.stringify())
                         }
                     },
                     error: function(result, statusText, xhr) {
-                        $("#remainingCount").text(JSON.stringify(result) + "/" + JSON.stringify(domainTotal));
+                        $("#results").text(JSON.stringify(result));
                     },
                 });
             });
@@ -61,6 +63,7 @@
     <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
     <p id="remaining_count"></p>
+    <p id="final_sums"></p>
 {% endblock %}
 
 
