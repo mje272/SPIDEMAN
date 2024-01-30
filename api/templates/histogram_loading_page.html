@@ -41,11 +41,11 @@
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
-                            $("#remainingCount").text((domainTotal - domainsOfInterest.length).toString() + "/" + domainTotal.toString()); //how to fix???
+                            $("#remaining_count").text((domainTotal - domainsOfInterest.length).toString() + "/" + domainTotal.toString()); //how to fix???
                             incrementalLoad();
                         } else {
                             var sums = "";
-                            for(let species in result) {
+                            for(let species in frequencyDictList) {
                                 let species_sum = 0;
                                 for(let dom in species) {
                                     
