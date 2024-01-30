@@ -42,7 +42,7 @@
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
                             $("#remainingCount").text(JSON.stringify(domainTotal - domainsOfInterest.length) + "/" + JSON.stringify(domainTotal));
-                            incrementalLoad();
+                            // incrementalLoad();
                         } else {
                             var sums = "";
                             for(let species in result) {
