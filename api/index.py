@@ -39,7 +39,7 @@ def generate_histogram():
     frequency_dict_list = r.json()
     counts_list = [sum(x.values()) for x in frequency_dict_list]
 
-    return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term)
+    return render_template('histogram.html', species_list=species_selection, counts_list=counts_list, fit_on_screen=fit_on_screen, search_term=search_term, frequency_dict_list=frequency_dict_list)
 
 @app.route('/histogram_large_request', methods = ['POST'])
 def histogram_large_request():
@@ -68,7 +68,6 @@ def differential_enrichment_graph():
     col_b = mydb[species_b]
 
     domains_list_a = col_a.distinct('InterPro ID')
-    # domains_list_a = domains_list_a[:5]    # remember to remove this
 
     dom_counts_dict_a = {}
     dom_counts_dict_b = {}
@@ -107,7 +106,7 @@ def differential_enrichment_graph():
 
 species_options_list = []
 @app.route('/get_species_list_options')
-def get_species_list_options():  # use this to create options for permanent update of selection menu
+def get_species_list_options():  # use this to create options for permanent update of selection menu  ### doesn't work online, but could adapt it to
     collection = mydb["254_species_data_alphabetized"].find({}, {"Genome project": 1})
     for i in collection:
         species = i["Genome project"]

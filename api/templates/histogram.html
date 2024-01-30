@@ -5,11 +5,21 @@
 <script src="{{ url_for('static', filename='javascript/plotly-2.26.0.min.js') }}"></script>
 
 <script>
+    const frequencyDictList = {{ frequency_dict_list|safe }};
+    const speciesList = {{ species_list|safe }};
+    const frequencies = {{ counts_list|safe }};
+    const fitOnScreen = '{{ fit_on_screen|safe }}';
+    
+    function display_data() {
+        let text = "";
+        for (let i = 0; i < speciesList.length; i++) {
+            text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n";
+        }
+        document.getElementById("data").innerHTML = text;
+    }
+    
     function make_histogram() {
 
-        const species = {{ species_list|safe }};
-        const frequencies = {{ counts_list|safe }};
-        const fitOnScreen = '{{ fit_on_screen|safe }}';
         const WIDTH_PER_BAR = 17;
         const LABEL_FIT_MARGIN = 325;
         const SCREEN_HEIGHT_SCALAR = 0.9;
@@ -20,7 +30,7 @@
 
         const data = [{
             x: frequencies,
-            y: species,
+            y: speciesList,
             type: "bar",
             name: "InterPro Domain Frequencies Across Species",
             orientation: "h"
@@ -67,10 +77,11 @@
 
 
 {% block body_attributes %}
-    onload='make_histogram();'
+    onload='make_histogram(); display_data();'
 {% endblock %}
     
 
 {% block body %}
     <div id="histogram" style="width:1000; height:750px;"></div>
+    <p id="data"></p>
 {% endblock %}
