@@ -29,6 +29,7 @@
                     processData: false,
                     success: function(result){
                         $("#remaining_domains").text(JSON.stringify(domainsOfInterest));
+                        $("#test").text(JSON.stringify(result));
                         if (frequencyDictList) {
                             for(let i=0; i < result.length; i++) {
                                 for(let dom in result[i]) {
@@ -40,7 +41,7 @@
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
-                            $("#remainingCount").text(JSON.stringify(result) + "/" + JSON.stringify(domainTotal));
+                            $("#remainingCount").text(JSON.stringify(domainTotal - domainsOfInterest.length) + "/" + JSON.stringify(domainTotal));
                             incrementalLoad();
                         } else {
                             var sums = "";
@@ -76,6 +77,7 @@
     <p id="remaining_count"></p>
     <p id="final_sums"></p>
     <p>{{ domains_of_interest|safe }}</p>
+    <p id="test">test</p>
 {% endblock %}
 
 
