@@ -41,11 +41,11 @@
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
-                            $("#remaining_count").text((domainTotal - domainsOfInterest.length).toString() + "/" + domainTotal.toString()); //how to fix???
+                            $("#remaining_count").text((domainTotal - domainsOfInterest.length + 1).toString() + "/" + domainTotal.toString()); //+1 is there so it ends on n/n
                             incrementalLoad();
                         } else {
                             var sums = "";
-                            for(let species in frequencyDictList) {
+                            for(let species of frequencyDictList) {
                                 let species_sum = 0;
                                 for(let dom in species) {
                                     
