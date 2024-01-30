@@ -41,8 +41,8 @@
                         } 
                         $("#results").text(JSON.stringify(frequencyDictList));
                         if (domainsOfInterest.length) {
-                            $("#remainingCount").text(domainTotal - domainsOfInterest.length + "/" + domainTotal);
-                            // incrementalLoad();
+                            $("#remainingCount").text(domainTotal - domainsOfInterest.length + "/" + domainTotal); //how to fix???
+                            incrementalLoad();
                         } else {
                             var sums = "";
                             for(let species in result) {
@@ -54,7 +54,7 @@
                                 sums += species_sum + " ";
                             }
                             
-                            $("#final_sums").text(sums);
+                            $("#final_sums").text(sums);  //how to fix???
                         }
                     },
                     error: function(result, statusText, xhr) {
