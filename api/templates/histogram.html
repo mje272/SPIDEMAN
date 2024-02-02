@@ -13,7 +13,7 @@
     function display_data() {
         let text = "";
         for (let i = 0; i < speciesList.length; i++) {
-            text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n";
+            text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n\n";
         }
         document.getElementById("data").innerHTML = text; //make sure that this is not an overlap issue
     }
@@ -83,7 +83,7 @@
     
 
 {% block body %}
-    <div id="histogram" style="width:1000; height:750px;"></div>
+    <div id="histogram" style="width:1000; height:750px;"></div><br><br>
     <p id="data"></p>
     
 {% endblock %}
