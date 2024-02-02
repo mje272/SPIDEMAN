@@ -79,6 +79,7 @@
 
 {% block body %}
     Loading...
+    {{ frequency_dict_list|safe }}
     <p id="remaining_domains">{{ domains_of_interest|safe }}</p>
     <p id="results"></p>
     <p id="remaining_count"></p>
