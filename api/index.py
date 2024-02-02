@@ -23,13 +23,14 @@ def index():
 
 @app.route('/generate_histogram', methods = ['POST'])
 def generate_histogram():  
-    species_selection = request.form.getlist('species_selection')  # AKA genome project
     search_term = request.form['search_term']
     search_type = request.form['search_type']
     fit_on_screen = request.form['fit_on_screen']
     large_request = request.form['large_request']
 
     if large_request == "false":
+        species_selection = request.form.getlist('species_selection')  # AKA genome project
+
         url = "https://dmn7mpvpxwkf3r4yvwb4abbcry0nzlqj.lambda-url.us-west-1.on.aws/"
         data = json.dumps({
             "species_selection": species_selection,
@@ -40,6 +41,7 @@ def generate_histogram():
         r = requests.post(url=url, data=data, headers=headers) 
         frequency_dict_list = r.json()
     else:
+        species_selection = json.loads(request.form['species_selection'])  # AKA genome project
         frequency_dict_list = json.loads(request.form['frequency_dict_list'])
     
     
