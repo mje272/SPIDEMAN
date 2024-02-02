@@ -54,6 +54,11 @@ def histogram_large_request():
     r = requests.post(url=url, data=data, headers=headers)
     domains_of_interest = r.json()
     return render_template('histogram_loading_page.html', species_list=species_selection, fit_on_screen=fit_on_screen, search_term=search_term, domains_of_interest=domains_of_interest)
+    
+#@app.route('/generate_large_histogram', methods = ['POST'])  # maybe make this gettable
+#def generate_large_histogram():
+#    species_selection
+#    return render_template('histogram.html') 
 
 
 @app.route('/differential_enrichment', methods = ['POST'])

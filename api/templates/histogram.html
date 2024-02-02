@@ -15,7 +15,7 @@
         for (let i = 0; i < speciesList.length; i++) {
             text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n";
         }
-        document.getElementById("data").innerHTML = text;
+        document.getElementById("data").innerHTML = text; //make sure that this is not an overlap issue
     }
     
     function make_histogram() {
@@ -82,7 +82,7 @@
     
 
 {% block body %}
-    <p id="data"></p>
     <div id="histogram" style="width:1000; height:750px;"></div>
+    <p id="data"></p>
     
 {% endblock %}
