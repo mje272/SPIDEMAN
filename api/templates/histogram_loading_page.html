@@ -54,12 +54,19 @@
                                 sums += species_sum.toString() + " ";
                             }
                             
-                            $("#final_sums").text(sums);  //how to fix???
+                            $("#final_sums").text(sums);
+                            $("#search_term").val(searchTerm);
+                            $("#species_selection").val(speciesList);
+                            $("#search_type").val("keyword");
+                            $("#fit_on_screen").val(fitOnScreen);
+                            $("#frequency_dict_list").val(frequencyDictList);
+                            document.getElementById("query_input_form").submit();
+                            
                         }
                     },
                     error: function(result, statusText, xhr) {
                         $("#results").text(JSON.stringify(result));
-                    },
+            
                 });
             });
         }
@@ -78,6 +85,18 @@
     <p id="final_sums"></p>
     <p>{{ domains_of_interest|safe }}</p>
     <p id="test">test</p>
+    
+    <form action="/generate_histogram" target="_blank" method="post" id="query_input_form">
+        <input type="hidden" id="search_term" name="search_term" readonly>
+        <input type="hidden" id="species_selection" name="species_selection" readonly>
+        <input type="hidden" id="search_type" name="search_type" readonly>
+        <input type="hidden" id="fit_on_screen" name="fit_on_screen" readonly>
+        <input type="hidden" id="large_request" name="large_request" readonly value="true">
+        <input type="hidden" id="frequency_dict_list" name="frequency_dict_list" readonly>
+    </form>
+    
+    
+    
 {% endblock %}
 
 

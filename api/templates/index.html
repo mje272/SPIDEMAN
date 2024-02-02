@@ -51,7 +51,7 @@
 {% block body %}
 test25
     <h1>Species InterPro Domain Frequency Comparison</h1>
-    <form action="/generate_histogram" target="_blank" method="post" id="query_input_form">  <!--update action directory-->
+    <form action="/generate_histogram" target="_blank" method="post" id="query_input_form">
         <label for="species_selection">Species Selection: </label>  
         <select id="species_selection" name="species_selection" form="query_input_form" multiple size="10">
             <option value=acanthocheilonema_viteae_prjeb1697>acanthocheilonema_viteae_prjeb1697</option>
@@ -330,6 +330,7 @@ test25
         <input type="hidden" id="default_fit_on_screen" name="fit_on_screen" value="off"><br><br>
         <label for="is_large_request">Large request: (For sets of inputs that timeout otherwise) (only use with keyword search terms)</label>
         <input type="checkbox" id="is_large_request" name="is_large_request" onchange="updateIsLargeRequest();"><br><br>
+        <input type="hidden" id="large_request" name="large_request" readonly value="false">
 
         <button type="submit">Submit</button>
         <p>note: This might take a while (depending on how many species are selected and how many results the search term gets)</p>
