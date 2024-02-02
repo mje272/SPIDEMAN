@@ -40,7 +40,7 @@ def generate_histogram():
         r = requests.post(url=url, data=data, headers=headers) 
         frequency_dict_list = r.json()
     else:
-        frequency_dict_list = request.form.getlist('frequency_dict_list')
+        frequency_dict_list = request.form.get('frequency_dict_list')
     
     
     # counts_list = [sum(json.loads().values()) for x in frequency_dict_list]
