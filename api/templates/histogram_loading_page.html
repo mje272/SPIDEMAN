@@ -26,10 +26,9 @@
                         domain: domainsOfInterest.pop(),
                     }),
                     cache: false,
-                    processData: false,
                     success: function(result){
                         $("#remaining_domains").text(JSON.stringify(domainsOfInterest));
-                        $("#test").text(JSON.stringify(result));
+                        $("#last_result").text(JSON.stringify(result));
                         if (frequencyDictList) {
                             for(let i=0; i < result.length; i++) {
                                 for(let dom in result[i]) {
@@ -85,7 +84,7 @@
     <p id="remaining_count"></p>
     <p id="final_sums"></p>
     <p>{{ domains_of_interest|safe }}</p>
-    <p id="test">test</p>
+    <p id="last_result"></p>
     
     <form action="/generate_histogram" target="_self" method="post" id="query_input_form">
         <input type="hidden" id="search_term" name="search_term" readonly>
