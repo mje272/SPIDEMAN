@@ -56,11 +56,10 @@
                             
                             $("#final_sums").text(sums);
                             $("#search_term").val(searchTerm);
-                            $("#species_selection").val(speciesList);
+                            $("#species_selection").val(JSON.stringify(speciesList));
                             $("#search_type").val("keyword");
                             $("#fit_on_screen").val(fitOnScreen);
                             $("#frequency_dict_list").val(JSON.stringify(frequencyDictList));
-                            $("#test").text(JSON.stringify(frequencyDictList));
                             document.getElementById("query_input_form").submit();
                             
                         }
