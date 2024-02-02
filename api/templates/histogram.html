@@ -27,6 +27,7 @@
         if (fitOnScreen == "on") {
             height = screen.height*SCREEN_HEIGHT_SCALAR;
         }
+        document.getElementById("histogram").style.height = height.toString() + "px";
 
         const data = [{
             x: frequencies,
@@ -82,7 +83,6 @@
     
 
 {% block body %}
-{{ frequency_dict_list|safe }}
     <div id="histogram" style="width:1000; height:750px;"></div>
     <p id="data"></p>
     
