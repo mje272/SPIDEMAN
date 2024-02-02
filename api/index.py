@@ -43,7 +43,7 @@ def generate_histogram():
         frequency_dict_list = request.form['frequency_dict_list']
     
     
-    counts_list = [sum(json.loads().values()) for x in frequency_dict_list]
+    counts_list = [sum(x.values()) for x in frequency_dict_list]
     # species_selection = ["asdg", "asdgas"]
     # counts_list = [5 for x in species_selection]
 
