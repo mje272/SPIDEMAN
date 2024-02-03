@@ -13,7 +13,7 @@
     function display_data() {
         let text = "";
         for (let i = 0; i < speciesList.length; i++) {
-            text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n";
+            text += speciesList[i] + ": " + JSON.stringify(frequencyDictList[i]) + "\n";  //newline doesn't seem to be working consistently, maybe use <br> somehow?
         }
         document.getElementById("data").innerHTML = text; //make sure that this is not an overlap issue
     }
@@ -33,7 +33,7 @@
             x: frequencies,
             y: speciesList,
             type: "bar",
-            name: "InterPro Domain Frequencies Across Species",
+            name: "InterPro Domain Frequencies Across " + speciesList.length.toString() + " Species",
             orientation: "h"
         }];
 
