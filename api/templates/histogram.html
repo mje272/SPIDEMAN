@@ -33,13 +33,13 @@
             x: frequencies,
             y: speciesList,
             type: "bar",
-            name: "InterPro Domain Frequencies Across " + speciesList.length.toString() + " Species",
+            name: "InterPro Domain Frequencies Across Species",
             orientation: "h"
         }];
 
         const layout = {
             title: {
-                text: "Frequency of \'{{ search_term|safe }}\' InterPro Domain Across Species",
+                text: "Frequency of \'{{ search_term|safe }}\' InterPro Domain Across " + speciesList.length.toString() + " Species",
                 
             },
             autosize: true,
