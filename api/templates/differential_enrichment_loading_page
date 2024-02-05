@@ -49,10 +49,10 @@
     <p id="results"></p>
     
 
-    <form action="/differential_enrichment" target="_self" method="post" id="query_input_form">
+    <!-- <form action="/differential_enrichment" target="_self" method="post" id="query_input_form">
         <input type="hidden" id="" name="" readonly>
         
-    </form>
+    </form> -->
     
     
     
