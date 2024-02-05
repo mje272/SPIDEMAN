@@ -71,53 +71,27 @@ def histogram_large_request():
 #    return render_template('histogram.html') 
 
 
-@app.route('/differential_enrichment', methods = ['POST'])
-def differential_enrichment_graph():
+@app.route('/load_differential_enrichment', methods = ['POST'])
+def load_differential_enrichment_graph():
+
+
     species_a = request.form['species_a']
     species_b = request.form['species_b']
     graph_enrichment_ratio = request.form['graph_enrichment_ratio']
     num_domains = int(request.form['num_domains'])
     include_ties = request.form['include_ties']
 
-    col_a = mydb[species_a]
-    col_b = mydb[species_b]
+    return render_template('differential_enrichment_loading_page.html', species_a=species_a, species_b=species_b, graph_enrichment_ratio=graph_enrichment_ratio, num_domains=num_domains, include_ties=include_ties)
+    # species_a=species_a, species_b=species_b, domains=selected_doms, 
+    #     frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio
 
-    domains_list_a = col_a.distinct('InterPro ID')
 
-    dom_counts_dict_a = {}
-    dom_counts_dict_b = {}
-    dom_ratio_pairs = {}
+@app.route('/differential_enrichment', methods = ['POST'])
+def render_differential_enrichment_graph():
+# species_a=species_a, species_b=species_b, domains=selected_doms, 
+#frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio
 
-    for domain in domains_list_a:
-        dom_ct_a = col_a.count_documents({"InterPro ID": domain})
-        dom_ct_b = col_b.count_documents({"InterPro ID": domain})
-        dom_counts_dict_a[domain] = dom_ct_a
-        dom_counts_dict_b[domain] = dom_ct_b
-        dom_ratio_pairs[domain] = (dom_ct_a + 1) / (dom_ct_b + 1)
-
-    dom_ratio_pairs = sorted(dom_ratio_pairs.items(), key=lambda x: x[1], reverse=True)
-    if num_domains == 0:
-        num_domains = len(dom_ratio_pairs)
-    selected_dom_ratio_pairs = dom_ratio_pairs[:num_domains]
-    i = num_domains
-    if include_ties == "on" and num_domains < len(dom_ratio_pairs):  # 'and' clause to avoid index error
-        while dom_ratio_pairs[i][1] == dom_ratio_pairs[num_domains-1][1]:
-            selected_dom_ratio_pairs.append(dom_ratio_pairs[i])
-            i += 1
-            if i == len(dom_ratio_pairs):  # avoid index error if we've hit all the domains
-                break
-    selected_doms = [x[0] for x in selected_dom_ratio_pairs]
-    dom_ratios = [x[1] for x in selected_dom_ratio_pairs]
-
-    selected_counts_a = []
-    selected_counts_b = []
-    for dom in selected_doms:
-        selected_counts_a.append(dom_counts_dict_a[dom])
-        selected_counts_b.append(dom_counts_dict_b[dom])
-
-    return render_template('differential_enrichment.html', species_a=species_a, species_b=species_b, domains=selected_doms, 
-        frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio)
-
+    return render_template('differential_enrichment.html')
 
 species_options_list = []
 @app.route('/get_species_list_options')

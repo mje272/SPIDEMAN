@@ -338,7 +338,7 @@ test31
     <br><br>
     <h1>Most differentially enriched InterPro domains between two species</h1>
     <p>This will display the domains most enriched in A compared to B; ie the greatest values for the expression (# of Interpro Domain in Species A + 1)/(# of Interpro Domain in Species B + 1)</p>
-    <form action="/differential_enrichment" target="_blank" method="post" id="differential_enrichment_form">
+    <form action="/load_differential_enrichment" target="_blank" method="post" id="differential_enrichment_form">
         <label for="species_a">Species A</label><br>
         <select id="species_a" name="species_a" form="differential_enrichment_form" size="10" required>
             <option value=acanthocheilonema_viteae_prjeb1697>acanthocheilonema_viteae_prjeb1697</option>
@@ -865,6 +865,6 @@ test31
         <input type="hidden" id="include_ties" name="include_ties" value="off"><br><br>
         <button type="submit">Submit</button>
     </form>
-    <p>note: This tends to take about 6min to run, but runtime increases for species with larger files (ie homo sapiens vs danio rerio took 33min)</p>
+    <p>note: This may take a minute or two to run</p>
     <br><br>
 {% endblock %}
