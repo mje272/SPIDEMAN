@@ -10,7 +10,7 @@
         const species_a = '{{ species_a|safe }}';
         const species_b = '{{ species_b|safe }}';
         const graph_enrichment_ratio = '{{ graph_enrichment_ratio|safe }}';
-        const num_domains = {{ num_domains|safe }};
+        const num_domains = '{{ num_domains|safe }}';
         const include_ties = '{{ include_ties|safe }}';
         
         function loadDifferentialEnrichment() {
