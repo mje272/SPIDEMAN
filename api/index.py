@@ -88,11 +88,12 @@ def load_differential_enrichment_graph():
 def render_differential_enrichment_graph():
     species_a = request.form['species_a']
     species_b = request.form['species_b']
+    graph_enrichment_ratio = request.form['graph_enrichment_ratio']
     domains = json.loads(request.form['domains'])
     frequency_a = json.loads(request.form['frequency_a'])
     frequency_b = json.loads(request.form['frequency_b'])
     ratios = json.loads(request.form['ratios'])
-    graph_enrichment_ratio = json.loads(request.form['graph_enrichment_ratio'])
+    
     raw_data = json.loads(request.form['raw_data'])
 
     return render_template('differential_enrichment.html', species_a=species_a, species_b=species_b, domains=domains, frequency_a=frequency_a, frequency_b=frequency_b, ratios=ratios, graph_enrichment_ratio=graph_enrichment_ratio, raw_data=raw_data) 
