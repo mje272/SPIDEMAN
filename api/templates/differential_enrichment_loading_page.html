@@ -37,7 +37,7 @@
                         $("#frequency_b").val(JSON.stringify(result["selected_b"]));
                         $("#ratios").val(JSON.stringify(result["selected_ratios"]));
                         $("#raw_data").val(JSON.stringify(result["ordered_data"]));
-                        // document.getElementById("query_input_form").submit();
+                        document.getElementById("query_input_form").submit();
                     },
                     error: function(result, statusText, xhr) {
                         $("#results").text(JSON.stringify(result));
