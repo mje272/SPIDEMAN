@@ -32,11 +32,11 @@
                         $("#species_a").val(species_a);
                         $("#species_b").val(species_b);
                         $("#graph_enrichment_ratio").val(graph_enrichment_ratio);
-                        $("#domains").val(result["selected_doms"]);
-                        $("#frequency_a").val(result["selected_a"]);
-                        $("#frequency_b").val(result["selected_b"]);
-                        $("#ratios").val(result["selected_ratios"]);
-                        $("#raw_data").val(result["ordered_data"]);
+                        $("#domains").val(JSON.stringify(result["selected_doms"]));
+                        $("#frequency_a").val(JSON.stringify(result["selected_a"]));
+                        $("#frequency_b").val(JSON.stringify(result["selected_b"]));
+                        $("#ratios").val(JSON.stringify(result["selected_ratios"]));
+                        $("#raw_data").val(JSON.stringify(result["ordered_data"]));
                         // document.getElementById("query_input_form").submit();
                     },
                     error: function(result, statusText, xhr) {
