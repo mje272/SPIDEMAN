@@ -49,12 +49,19 @@
     <p id="results"></p>
     
 
-    <!-- <form action="/differential_enrichment" target="_self" method="post" id="query_input_form">
-        <input type="hidden" id="a" name="a" readonly>
-        
-    </form> -->
+    <form action="/differential_enrichment" target="_self" method="post" id="query_input_form">
+        <input type="hidden" id="species_a" name="species_a" readonly>
+        <input type="hidden" id="species_b" name="species_b" readonly>
+        <input type="hidden" id="domains" name="domains" readonly>
+        <input type="hidden" id="frequency_a" name="frequency_a" readonly>
+        <input type="hidden" id="frequency_b" name="frequency_b" readonly>
+        <input type="hidden" id="ratios" name="ratios" readonly>
+        <input type="hidden" id="graph_enrichment_ratio" name="graph_enrichment_ratio" readonly>
+        <input type="hidden" id="raw_data" name="raw_data" readonly>
+    </form>
     
     
+
     
 {% endblock %}
 
