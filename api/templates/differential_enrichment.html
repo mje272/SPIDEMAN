@@ -18,6 +18,10 @@
         const LABEL_FIT_MARGIN = 325;
         const SCREEN_HEIGHT_SCALAR = 0.9;
 
+        const height = screen.height * SCREEN_HEIGHT_SCALAR;
+        document.getElementById("histogram").style.height = height.toString() + "px";
+
+
         const data = [{
             x: domains,
             y: frequencyA,
@@ -39,7 +43,7 @@
             },
             autosize: true,
             width: screen.width,
-            height: screen.height * SCREEN_HEIGHT_SCALAR,
+            height: height,
             automargin: true,
             xaxis: {
                 title: 'InterPro Domain',
@@ -85,4 +89,5 @@
 
 {% block body %}
     <div id="histogram" style="width:1000; height:120px;"></div>
+    {{ raw_data|safe }}
 {% endblock %}

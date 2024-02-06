@@ -82,16 +82,20 @@ def load_differential_enrichment_graph():
     include_ties = request.form['include_ties']
 
     return render_template('differential_enrichment_loading_page.html', species_a=species_a, species_b=species_b, graph_enrichment_ratio=graph_enrichment_ratio, num_domains=num_domains, include_ties=include_ties)
-    # species_a=species_a, species_b=species_b, domains=selected_doms, 
-    #     frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio
-
+    
 
 @app.route('/differential_enrichment', methods = ['POST'])
 def render_differential_enrichment_graph():
-# species_a=species_a, species_b=species_b, domains=selected_doms, 
-#frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio
+    species_a = request.form['species_a']
+    species_b = request.form['species_b']
+    domains = request.form['domains']
+    frequency_a = request.form['frequency_a']
+    frequency_b = request.form['frequency_b']
+    ratios = request.form['ratios']
+    graph_enrichment_ratio = request.form['graph_enrichment_ratio']
+    raw_data = request.form['raw_data']
 
-    return render_template('differential_enrichment.html')
+    return render_template('differential_enrichment.html', species_a=species_a, species_b=species_b, domains=domains, frequency_a=frequency_a, frequency_b=frequency_b, ratios=ratios, graph_enrichment_ratio=graph_enrichment_ratio, raw_data=raw_data) 
 
 species_options_list = []
 @app.route('/get_species_list_options')
