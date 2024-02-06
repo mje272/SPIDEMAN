@@ -81,7 +81,7 @@ def load_differential_enrichment_graph():
     num_domains = int(request.form['num_domains'])
     include_ties = request.form['include_ties']
 
-    return render_template('differential_enrichment_loading_page.html', species_a=species_a, species_b=species_b, graph_enrichment_ratio=graph_enrichment_ratio, num_domains=num_domains, include_ties=include_ties)
+    return render_template('base.html', species_a=species_a, species_b=species_b, graph_enrichment_ratio=graph_enrichment_ratio, num_domains=num_domains, include_ties=include_ties)
     # species_a=species_a, species_b=species_b, domains=selected_doms, 
     #     frequency_a=selected_counts_a, frequency_b=selected_counts_b, ratios=dom_ratios, graph_enrichment_ratio=graph_enrichment_ratio
 
